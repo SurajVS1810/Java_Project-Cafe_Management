@@ -77,22 +77,27 @@ public class Login extends JFrame {
 					Class.forName("oracle.jdbc.driver.OracleDriver");
 					Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl","mca2253","mca2253");
 					PreparedStatement pst=con.prepareStatement("select * from login where uname=? and pass=?");
+					if(username.getText().equals("")||password.getText().equals(""))
+					{
+						JOptionPane.showMessageDialog(null, "Please enter the values");
+					}
+					else
+					{
 					pst.setString(1, username.getText());
 					pst.setString(2, password.getText());
 					
 					ResultSet rs= pst.executeQuery();
 					if(rs.next())
 					{
-						System.out.println("User is valid");
 						JOptionPane.showMessageDialog(null, "User successfully login");
 					}
 					else
 					{
-						System.out.println("User is invalid");
 						JOptionPane.showMessageDialog(null, "Invalid username or password");
 					}
 					rs.close();
 					pst.close();
+					}
 					} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -111,10 +116,17 @@ public class Login extends JFrame {
 					Class.forName("oracle.jdbc.driver.OracleDriver");
 					Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl","mca2253","mca2253");
 					Statement stmt=con.createStatement();
+					if(username.getText().equals("")||password.getText().equals(""))
+					{
+						JOptionPane.showMessageDialog(null, "Please enter the values");
+					}
+					else
+					{
 					String s1=username.getText();
 					String s2=password.getText();
 					stmt.executeUpdate("insert into login values('"+s1+"','"+s2+"')");
 					JOptionPane.showMessageDialog(null, "User successfully registered");
+					}
 					} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

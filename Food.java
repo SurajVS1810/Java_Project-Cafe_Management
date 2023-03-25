@@ -24,6 +24,8 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Food extends JFrame {
 
@@ -62,10 +64,26 @@ public class Food extends JFrame {
 		contentPane.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(220, 95, 241, 291);
+		scrollPane.setBounds(220, 95, 241, 311);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				DefaultTableModel dtm= (DefaultTableModel) table.getModel();
+				String strfn=(String) dtm.getValueAt(table.getSelectedRow(), 0);
+			//  int i=(int) dtm.getValueAt(table.getSelectedRow(), 1);
+			//	String strprice = new Integer(i).toString();
+				String strdesc=(String) dtm.getValueAt(table.getSelectedRow(), 2);
+				
+				foodname.setText(strfn);
+			//	price.setText(strprice);
+				desc.setText(strdesc);
+				
+			}
+		});
 		scrollPane.setViewportView(table);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
@@ -132,12 +150,19 @@ public class Food extends JFrame {
 					Class.forName("oracle.jdbc.driver.OracleDriver");
 					Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl","mca2253","mca2253");
 					Statement stmt=con.createStatement();
+					if(foodname.getText().equals("")||price.getText().equals("")||desc.getText().equals(""))
+					{
+						JOptionPane.showMessageDialog(null, "Please enter the values");
+					}
+					else
+					{
 					String s1=foodname.getText();
 					String s2=price.getText();
 					int i=Integer.parseInt(s2);
 					String s3=desc.getText();
 					stmt.executeUpdate("insert into food values('"+s1+"',"+i+",'"+s3+"')");
 					JOptionPane.showMessageDialog(null, "Successfully inserted");
+					}
 					} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -148,10 +173,65 @@ public class Food extends JFrame {
 		contentPane.add(add);
 		
 		JButton edit = new JButton("Edit Item");
+		edit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String s1=foodname.getText();
+				String s2=price.getText();
+				int i=Integer.parseInt(s2);
+				String s3=desc.getText();
+				
+				DefaultTableModel dtm= (DefaultTableModel) table.getModel();
+				
+				dtm.setValueAt(s1,table.getSelectedRow(), 0);
+				dtm.setValueAt(i,table.getSelectedRow(), 1);
+				dtm.setValueAt(s3,table.getSelectedRow(), 2);
+				
+				try {
+					Class.forName("oracle.jdbc.driver.OracleDriver");
+					Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl","mca2253","mca2253");
+					Statement stmt=con.createStatement();
+					if(foodname.getText().equals("")||price.getText().equals("")||desc.getText().equals(""))
+					{
+						JOptionPane.showMessageDialog(null, "Please enter the values");
+					}
+					else
+					{
+					String sql="update food set food_name='"+s1+"', price="+i+", description='"+s3+"' where food_name='"+s1+"'";
+					System.out.println("hvjhdf");
+					stmt.executeUpdate(sql);
+					JOptionPane.showMessageDialog(null, "Successfully updated");
+					}
+					} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
 		edit.setBounds(59, 262, 89, 35);
 		contentPane.add(edit);
 		
 		JButton delete = new JButton("Delete Item");
+		delete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					Class.forName("oracle.jdbc.driver.OracleDriver");
+					Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl","mca2253","mca2253");
+					Statement stmt=con.createStatement();
+					
+					String s1=foodname.getText();
+					String sql="delete from food where food_name='"+s1+"'";
+					
+					stmt.executeUpdate(sql);
+					JOptionPane.showMessageDialog(null, "Successfully deleted");
+					
+					} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		delete.setBounds(59, 328, 89, 35);
 		contentPane.add(delete);
 	}
