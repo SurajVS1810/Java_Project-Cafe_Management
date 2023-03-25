@@ -7,6 +7,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class AdminPanel extends JFrame {
 
@@ -45,6 +47,13 @@ public class AdminPanel extends JFrame {
 		contentPane.add(users);
 		
 		JButton item = new JButton("Items");
+		item.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Food f=new Food();
+				f.setVisible(true);
+				dispose();
+			}
+		});
 		item.setBounds(174, 192, 141, 64);
 		contentPane.add(item);
 		

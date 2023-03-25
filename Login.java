@@ -76,24 +76,30 @@ public class Login extends JFrame {
 				try {
 					Class.forName("oracle.jdbc.driver.OracleDriver");
 					Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl","mca2253","mca2253");
-					PreparedStatement pst=con.prepareStatement("select * from login where uname=? and pass=?");
+					PreparedStatement pst=con.prepareStatement("select * from login where uname=? and password=?");
 					if(username.getText().equals("")||password.getText().equals(""))
 					{
 						JOptionPane.showMessageDialog(null, "Please enter the values");
 					}
 					else
 					{
-					pst.setString(1, username.getText());
-					pst.setString(2, password.getText());
+					String s1=username.getText();
+					String s2=password.getText();
+					pst.setString(1, s1);
+					pst.setString(2, s2);
 					
 					ResultSet rs= pst.executeQuery();
 					if(rs.next())
 					{
 						JOptionPane.showMessageDialog(null, "User successfully login");
+						AdminPanel ap=new AdminPanel();
+						ap.setVisible(true);
+						dispose();
 					}
 					else
 					{
 						JOptionPane.showMessageDialog(null, "Invalid username or password");
+						
 					}
 					rs.close();
 					pst.close();
