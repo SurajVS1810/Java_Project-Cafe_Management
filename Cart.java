@@ -73,7 +73,7 @@ public class Cart extends JFrame {
 					Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl","mca2253","mca2253");
 					Statement stmt=con.createStatement();
 					String s=cartlabel.getText();
-					ResultSet rs=stmt.executeQuery("select foodname,price from cart where uname='"+s+"'");
+					ResultSet rs=stmt.executeQuery("select foodname,price,quantity,total_price from cart where uname='"+s+"'");
 					
 					ResultSetMetaData rm=rs.getMetaData();
 					table.setModel(DbUtils.resultSetToTableModel(rs));
@@ -157,23 +157,24 @@ public class Cart extends JFrame {
 					ResultSet rs=stmt.executeQuery("select count(*) from orders");
 					if(rs.next())
 					{
-						String s1=rs.getString(1);
-						int i=Integer.parseInt(s1);
-						int j=i++;
+						String k=rs.getString(1);
+						int i=Integer.parseInt(k);
+						int j=i+7;
+						String s=Integer.toString(j);
+					String s1=name.getText();
+					String s2=address.getText();
 					
-					String s2=name.getText();
-					String s3=address.getText();
-					
-					String s4=no.getText();
-					String s5=land.getText();
-					String s6=cartlabel.getText();
+					String s3=no.getText();
+					String s4=land.getText();
+					String s5=cartlabel.getText();
 					
 					DefaultTableModel dtm= (DefaultTableModel) table.getModel();
-					String s7=(String) dtm.getValueAt(table.getSelectedRow(), 0);
-					String s8=(String) dtm.getValueAt(table.getSelectedRow(), 1);
+					String s6=(String) dtm.getValueAt(table.getSelectedRow(), 0);
+					String s7=(String) dtm.getValueAt(table.getSelectedRow(), 1);
+					String s8=(String) dtm.getValueAt(table.getSelectedRow(), 2);
+					String s9=(String) dtm.getValueAt(table.getSelectedRow(), 3);
 					
-					
-					stmt.executeUpdate("insert into orders values("+j+",'"+s2+"','"+s3+"','"+s4+"','"+s5+"','"+s6+"','"+s7+"','"+s8+"',CURRENT_TIMESTAMP)");
+					stmt.executeUpdate("insert into orders values('"+s+"','"+s1+"','"+s2+"','"+s3+"','"+s4+"','"+s5+"','"+s6+"','"+s7+"','"+s8+"','"+s9+"',CURRENT_TIMESTAMP)");
 					JOptionPane.showMessageDialog(null, "Successfully inserted");
 					}
 					}
@@ -187,30 +188,67 @@ public class Cart extends JFrame {
 		btnNewButton_2.setBounds(54, 290, 110, 47);
 		contentPane.add(btnNewButton_2);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(249, 116, 206, 210);
-		contentPane.add(scrollPane);
-		
-		table = new JTable();
-		scrollPane.setViewportView(table);
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"Food Name", "Price"
-			}
-		));
-		
 		JButton btnNewButton_3 = new JButton("Home");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				UserPanel u=new UserPanel();
+				u.lblUser.setText(cartlabel.getText());
 				u.setVisible(true);
 				dispose();
 			}
 		});
 		btnNewButton_3.setBounds(10, 27, 89, 23);
 		contentPane.add(btnNewButton_3);
+		
+		JButton btnNewButton_4 = new JButton("DELETE");
+		btnNewButton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					Class.forName("oracle.jdbc.driver.OracleDriver");
+					Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl","mca2253","mca2253");
+					Statement stmt=con.createStatement();
+					DefaultTableModel dtm= (DefaultTableModel) table.getModel();
+					String strfn=(String) dtm.getValueAt(table.getSelectedRow(), 0);
+				
+					
+						if(strfn.equals(""))
+						{
+							JOptionPane.showMessageDialog(null, "Please enter the values");
+						}
+						else
+						{
+							String sql="delete from cart where foodname='"+strfn+"'";
+							stmt.executeUpdate(sql);
+					JOptionPane.showMessageDialog(null, "Successfully deleted");
+						}
+					} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnNewButton_4.setBounds(313, 337, 89, 23);
+		contentPane.add(btnNewButton_4);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(240, 125, 217, 187);
+		contentPane.add(scrollPane);
+		
+		table = new JTable();
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				DefaultTableModel dtm= (DefaultTableModel) table.getModel();
+			}
+		});
+		scrollPane.setViewportView(table);
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"Food Name", "Price", "Quantity", "Total Price"
+			}
+		));
 	}
 
 }

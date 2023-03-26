@@ -29,13 +29,16 @@ import java.awt.event.MouseEvent;
 public class UserPanel extends JFrame {
 
 	private JPanel contentPane;
-	private JTable table;
 	public JLabel lblUser;
 	private JButton btnNewButton_1;
 	private JLabel foodlabel;
 	private JLabel pricelabel;
 	private JLabel desclabel;
 	private JButton cart;
+	private JTextField quantity;
+	private JLabel quan;
+	private JTable table;
+	private JScrollPane scrollPane;
 
 	/**
 	 * Launch the application.
@@ -64,35 +67,6 @@ public class UserPanel extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(213, 136, 223, 224);
-		contentPane.add(scrollPane);
-		
-		table = new JTable();
-		table.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-				DefaultTableModel dtm= (DefaultTableModel) table.getModel();
-				String strfn=(String) dtm.getValueAt(table.getSelectedRow(), 0);
-				String strprice=(String) dtm.getValueAt(table.getSelectedRow(), 1);
-		
-				String strdesc=(String) dtm.getValueAt(table.getSelectedRow(), 2);
-				
-				foodlabel.setText(strfn);
-				pricelabel.setText(strprice);
-				desclabel.setText(strdesc);
-			}
-		});
-		scrollPane.setViewportView(table);
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"Food Name", "Price", "Description"
-			}
-		));
 		
 		JButton list = new JButton("Food List");
 		list.addActionListener(new ActionListener() {
@@ -124,7 +98,7 @@ public class UserPanel extends JFrame {
 					Class.forName("oracle.jdbc.driver.OracleDriver");
 					Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl","mca2253","mca2253");
 					Statement stmt=con.createStatement();
-					if(foodlabel.getText().equals("")||pricelabel.getText().equals("")||desclabel.getText().equals(""))
+					if(foodlabel.getText().equals("")||pricelabel.getText().equals("")||desclabel.getText().equals("")||quantity.getText().equals(""))
 					{
 						JOptionPane.showMessageDialog(null, "Please enter the values");
 					}
@@ -134,8 +108,12 @@ public class UserPanel extends JFrame {
 					String s1=lblUser.getText();
 					String s2=foodlabel.getText();
 					String s3=pricelabel.getText();
-					
-					stmt.executeUpdate("insert into cart values('"+s1+"','"+s2+"','"+s3+"')");
+					String s4=quantity.getText();
+					int i=Integer.parseInt(s4);
+					int j=Integer.parseInt(s3);
+					int p=i*j;
+					String s=Integer.toString(p);
+					stmt.executeUpdate("insert into cart values('"+s1+"','"+s2+"','"+s3+"','"+s4+"','"+s+"')");
 					JOptionPane.showMessageDialog(null, "Successfully inserted");
 					}
 					} catch (Exception e1) {
@@ -144,7 +122,7 @@ public class UserPanel extends JFrame {
 					}
 			}
 		});
-		btnNewButton.setBounds(36, 260, 123, 32);
+		btnNewButton.setBounds(36, 299, 123, 32);
 		contentPane.add(btnNewButton);
 		
 		lblUser = new JLabel();
@@ -163,7 +141,6 @@ public class UserPanel extends JFrame {
 		contentPane.add(btnNewButton_1);
 		
 		foodlabel = new JLabel();
-	
 		foodlabel.setBounds(36, 133, 110, 32);
 		contentPane.add(foodlabel);
 		
@@ -184,8 +161,46 @@ public class UserPanel extends JFrame {
 				dispose();
 			}
 		});
-		cart.setBounds(188, 392, 110, 32);
+		cart.setBounds(277, 388, 110, 32);
 		contentPane.add(cart);
+		
+		quantity = new JTextField();
+		quantity.setBounds(92, 254, 86, 20);
+		contentPane.add(quantity);
+		quantity.setColumns(10);
+		
+		quan = new JLabel("Quantity : ");
+		quan.setBounds(16, 257, 66, 14);
+		contentPane.add(quan);
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(227, 141, 219, 210);
+		contentPane.add(scrollPane);
+		
+		table = new JTable();
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+
+				DefaultTableModel dtm= (DefaultTableModel) table.getModel();
+				String strfn=(String) dtm.getValueAt(table.getSelectedRow(), 0);
+				String strprice=(String) dtm.getValueAt(table.getSelectedRow(), 1);
+		
+				String strdesc=(String) dtm.getValueAt(table.getSelectedRow(), 2);
+				
+				foodlabel.setText(strfn);
+				pricelabel.setText(strprice);
+				desclabel.setText(strdesc);
+			}
+		});
+		scrollPane.setViewportView(table);
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"Food Name", "Price", "Description"
+			}
+		));
 	}
 
 }

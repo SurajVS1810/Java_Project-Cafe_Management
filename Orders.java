@@ -3,6 +3,7 @@ package Cafe;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTable;
@@ -62,7 +63,7 @@ public class Orders extends JFrame {
 					Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl","mca2253","mca2253");
 					Statement stmt=con.createStatement();
 					ResultSet rs=stmt.executeQuery("select * from orders");
-					ResultSetMetaData rm=rs.getMetaData();
+					
 					table.setModel(DbUtils.resultSetToTableModel(rs));
 					
 					} catch (SQLException e1) {
@@ -74,20 +75,38 @@ public class Orders extends JFrame {
 					}
 			}
 		});
-		btnNewButton.setBounds(160, 11, 126, 23);
+		btnNewButton.setBounds(160, 11, 140, 23);
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("DELETE ORDER");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				try {
+					Class.forName("oracle.jdbc.driver.OracleDriver");
+					Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl","mca2253","mca2253");
+					Statement stmt=con.createStatement();
+					
+					
+					DefaultTableModel dtm= (DefaultTableModel) table.getModel();
+					String o_id=(String) dtm.getValueAt(table.getSelectedRow(), 0);
+					String sql="delete from orders where order_id='"+o_id+"'";
+					stmt.executeUpdate(sql);
+						if(o_id.equals(""))
+							JOptionPane.showMessageDialog(null, "Please enter the values");
+						else
+					JOptionPane.showMessageDialog(null, "Successfully deleted");
+					
+					} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
-		btnNewButton_1.setBounds(179, 427, 119, 23);
+		btnNewButton_1.setBounds(179, 412, 140, 23);
 		contentPane.add(btnNewButton_1);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 45, 464, 371);
+		scrollPane.setBounds(21, 44, 453, 346);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
@@ -96,7 +115,7 @@ public class Orders extends JFrame {
 			new Object[][] {
 			},
 			new String[] {
-				"Order_id", "Name", "Address", "Phone", "Land_Mark", "Username", "Food Name", "Price", "Date_Time"
+				"Order_id", "Name", "Address", "Phone", "Land Mark", "Username", "Foodname", "Price", "Quantity", "Total Price", "Date_Time"
 			}
 		));
 	}
