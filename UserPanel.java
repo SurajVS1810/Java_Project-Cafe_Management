@@ -21,6 +21,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -29,11 +30,12 @@ public class UserPanel extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
-	private JTextField food;
-	private JTextField price;
-	private JTextField desc;
 	public JLabel lblUser;
 	private JButton btnNewButton_1;
+	private JLabel foodlabel;
+	private JLabel pricelabel;
+	private JLabel desclabel;
+	private JButton cart;
 
 	/**
 	 * Launch the application.
@@ -78,9 +80,9 @@ public class UserPanel extends JFrame {
 		
 				String strdesc=(String) dtm.getValueAt(table.getSelectedRow(), 2);
 				
-				food.setText(strfn);
-				price.setText(strprice);
-				desc.setText(strdesc);
+				foodlabel.setText(strfn);
+				pricelabel.setText(strprice);
+				desclabel.setText(strdesc);
 			}
 		});
 		scrollPane.setViewportView(table);
@@ -115,25 +117,31 @@ public class UserPanel extends JFrame {
 		list.setBounds(277, 88, 96, 23);
 		contentPane.add(list);
 		
-		food = new JTextField();
-		food.setBounds(36, 134, 110, 32);
-		contentPane.add(food);
-		food.setColumns(10);
-		
-		price = new JTextField();
-		price.setBounds(36, 166, 110, 32);
-		contentPane.add(price);
-		price.setColumns(10);
-		
-		desc = new JTextField();
-		desc.setBounds(36, 198, 110, 32);
-		contentPane.add(desc);
-		desc.setColumns(10);
-		
 		JButton btnNewButton = new JButton("ADD TO CART");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				try {
+					Class.forName("oracle.jdbc.driver.OracleDriver");
+					Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl","mca2253","mca2253");
+					Statement stmt=con.createStatement();
+					if(foodlabel.getText().equals("")||pricelabel.getText().equals("")||desclabel.getText().equals(""))
+					{
+						JOptionPane.showMessageDialog(null, "Please enter the values");
+					}
+					else
+					{
+
+					String s1=lblUser.getText();
+					String s2=foodlabel.getText();
+					String s3=pricelabel.getText();
+					
+					stmt.executeUpdate("insert into cart values('"+s1+"','"+s2+"','"+s3+"')");
+					JOptionPane.showMessageDialog(null, "Successfully inserted");
+					}
+					} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+					}
 			}
 		});
 		btnNewButton.setBounds(36, 260, 123, 32);
@@ -153,6 +161,31 @@ public class UserPanel extends JFrame {
 		});
 		btnNewButton_1.setBounds(405, 28, 69, 23);
 		contentPane.add(btnNewButton_1);
+		
+		foodlabel = new JLabel();
+	
+		foodlabel.setBounds(36, 133, 110, 32);
+		contentPane.add(foodlabel);
+		
+		pricelabel = new JLabel();
+		pricelabel.setBounds(36, 168, 96, 32);
+		contentPane.add(pricelabel);
+		
+		desclabel = new JLabel();
+		desclabel.setBounds(36, 211, 94, 32);
+		contentPane.add(desclabel);
+		
+		cart = new JButton("Show Cart");
+		cart.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Cart c=new Cart();
+				c.cartlabel.setText(lblUser.getText());
+				c.setVisible(true);
+				dispose();
+			}
+		});
+		cart.setBounds(188, 392, 110, 32);
+		contentPane.add(cart);
 	}
 
 }

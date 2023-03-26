@@ -107,6 +107,8 @@ public class Login extends JFrame {
 								
 								UserPanel u=new UserPanel();
 								u.lblUser.setText(s1);
+								Cart c=new Cart();
+								
 								u.setVisible(true);
 								dispose();
 							}	
