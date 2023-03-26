@@ -47,26 +47,12 @@ public class Orders extends JFrame {
 	 */
 	public Orders() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 500,500);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 45, 414, 172);
-		contentPane.add(scrollPane);
-		
-		table = new JTable();
-		scrollPane.setViewportView(table);
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"Name", "Address", "Phone", "Land Mark", "uname", "Food Name", "Price", "Date and Time"
-			}
-		));
 		
 		JButton btnNewButton = new JButton("Show Orders");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -88,7 +74,7 @@ public class Orders extends JFrame {
 					}
 			}
 		});
-		btnNewButton.setBounds(160, 11, 89, 23);
+		btnNewButton.setBounds(160, 11, 126, 23);
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("DELETE ORDER");
@@ -97,8 +83,22 @@ public class Orders extends JFrame {
 				
 			}
 		});
-		btnNewButton_1.setBounds(175, 228, 89, 23);
+		btnNewButton_1.setBounds(179, 427, 119, 23);
 		contentPane.add(btnNewButton_1);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 45, 464, 371);
+		contentPane.add(scrollPane);
+		
+		table = new JTable();
+		scrollPane.setViewportView(table);
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"Order_id", "Name", "Address", "Phone", "Land_Mark", "Username", "Food Name", "Price", "Date_Time"
+			}
+		));
 	}
 
 }

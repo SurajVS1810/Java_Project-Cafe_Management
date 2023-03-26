@@ -154,20 +154,28 @@ public class Cart extends JFrame {
 					}
 					else
 					{
-					String s1=name.getText();
-					String s2=address.getText();
+					ResultSet rs=stmt.executeQuery("select count(*) from orders");
+					if(rs.next())
+					{
+						String s1=rs.getString(1);
+						int i=Integer.parseInt(s1);
+						int j=i++;
 					
-					String s3=no.getText();
-					String s4=land.getText();
-					String s5=cartlabel.getText();
+					String s2=name.getText();
+					String s3=address.getText();
+					
+					String s4=no.getText();
+					String s5=land.getText();
+					String s6=cartlabel.getText();
 					
 					DefaultTableModel dtm= (DefaultTableModel) table.getModel();
-					String s6=(String) dtm.getValueAt(table.getSelectedRow(), 0);
-					String s7=(String) dtm.getValueAt(table.getSelectedRow(), 1);
-			
+					String s7=(String) dtm.getValueAt(table.getSelectedRow(), 0);
+					String s8=(String) dtm.getValueAt(table.getSelectedRow(), 1);
 					
-					stmt.executeUpdate("insert into orders values('"+s1+"','"+s2+"','"+s3+"','"+s4+"','"+s5+"','"+s6+"','"+s7+"',CURRENT_TIMESTAMP)");
+					
+					stmt.executeUpdate("insert into orders values("+j+",'"+s2+"','"+s3+"','"+s4+"','"+s5+"','"+s6+"','"+s7+"','"+s8+"',CURRENT_TIMESTAMP)");
 					JOptionPane.showMessageDialog(null, "Successfully inserted");
+					}
 					}
 					} catch (Exception e1) {
 					// TODO Auto-generated catch block
