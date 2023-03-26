@@ -11,6 +11,7 @@ import javax.swing.table.DefaultTableModel;
 import net.proteanit.sql.DbUtils;
 
 import javax.swing.JScrollPane;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -25,6 +26,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Color;
 
 public class UserPanel extends JFrame {
 
@@ -39,6 +41,9 @@ public class UserPanel extends JFrame {
 	private JLabel quan;
 	private JTable table;
 	private JScrollPane scrollPane;
+	private JLabel label;
+	private JLabel img;
+	private JLabel lblNewLabel;
 
 	/**
 	 * Launch the application.
@@ -69,6 +74,7 @@ public class UserPanel extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton list = new JButton("Food List");
+		list.setBackground(new Color(192, 192, 192));
 		list.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -88,10 +94,11 @@ public class UserPanel extends JFrame {
 					}
 			}
 		});
-		list.setBounds(277, 88, 96, 23);
+		list.setBounds(291, 107, 96, 23);
 		contentPane.add(list);
 		
 		JButton btnNewButton = new JButton("ADD TO CART");
+		btnNewButton.setBackground(new Color(128, 255, 0));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -122,7 +129,7 @@ public class UserPanel extends JFrame {
 					}
 			}
 		});
-		btnNewButton.setBounds(36, 299, 123, 32);
+		btnNewButton.setBounds(44, 334, 123, 32);
 		contentPane.add(btnNewButton);
 		
 		lblUser = new JLabel();
@@ -130,6 +137,7 @@ public class UserPanel extends JFrame {
 		contentPane.add(lblUser);
 		
 		btnNewButton_1 = new JButton("logout");
+		btnNewButton_1.setBackground(new Color(255, 255, 128));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Login l=new Login();
@@ -141,18 +149,19 @@ public class UserPanel extends JFrame {
 		contentPane.add(btnNewButton_1);
 		
 		foodlabel = new JLabel();
-		foodlabel.setBounds(36, 133, 110, 32);
+		foodlabel.setBounds(118, 165, 110, 32);
 		contentPane.add(foodlabel);
 		
 		pricelabel = new JLabel();
-		pricelabel.setBounds(36, 168, 96, 32);
+		pricelabel.setBounds(118, 204, 96, 32);
 		contentPane.add(pricelabel);
 		
 		desclabel = new JLabel();
-		desclabel.setBounds(36, 211, 94, 32);
+		desclabel.setBounds(112, 247, 94, 32);
 		contentPane.add(desclabel);
 		
 		cart = new JButton("Show Cart");
+		cart.setBackground(new Color(192, 192, 192));
 		cart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Cart c=new Cart();
@@ -165,16 +174,16 @@ public class UserPanel extends JFrame {
 		contentPane.add(cart);
 		
 		quantity = new JTextField();
-		quantity.setBounds(92, 254, 86, 20);
+		quantity.setBounds(112, 303, 86, 20);
 		contentPane.add(quantity);
 		quantity.setColumns(10);
 		
 		quan = new JLabel("Quantity : ");
-		quan.setBounds(16, 257, 66, 14);
+		quan.setBounds(20, 306, 66, 14);
 		contentPane.add(quan);
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(227, 141, 219, 210);
+		scrollPane.setBounds(227, 141, 219, 226);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
@@ -201,6 +210,21 @@ public class UserPanel extends JFrame {
 				"Food Name", "Price", "Description"
 			}
 		));
+		
+		ImageIcon bc=new ImageIcon(getClass().getResource("userpanel (1).jpg"));
+		
+		label = new JLabel("New label");
+		label.setBounds(175, 11, -138, 100);
+		contentPane.add(label);
+		
+		img = new JLabel(bc);
+		img.setBounds(22, 11, 194, 106);
+		contentPane.add(img);
+		
+		lblNewLabel = new JLabel("New label");
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\HP\\Downloads\\admin.png"));
+		lblNewLabel.setBounds(0, 0, 484, 461);
+		contentPane.add(lblNewLabel);
 	}
 
 }

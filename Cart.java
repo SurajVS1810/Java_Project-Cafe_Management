@@ -105,7 +105,7 @@ public class Cart extends JFrame {
 		contentPane.add(btnNewButton_1);
 		
 		cartlabel = new JLabel();
-		cartlabel.setBounds(410, 11, 46, 14);
+		cartlabel.setBounds(428, 11, 46, 14);
 		contentPane.add(cartlabel);
 		
 		name = new JTextField();
@@ -178,7 +178,7 @@ public class Cart extends JFrame {
 					String s9=(String) dtm.getValueAt(table.getSelectedRow(), 3);
 					
 					stmt.executeUpdate("insert into orders values('"+s+"','"+s1+"','"+s2+"','"+s3+"','"+s4+"','"+s5+"','"+s6+"','"+s7+"','"+s8+"','"+s9+"',CURRENT_TIMESTAMP)");
-					JOptionPane.showMessageDialog(null, "Successfully inserted");
+					JOptionPane.showMessageDialog(null, "Your Order is Placed, Food will be arrived in 30 minutes,Thanku...");
 					}
 					}
 					} catch (Exception e1) {

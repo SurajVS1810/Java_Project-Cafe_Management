@@ -21,6 +21,9 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
+import java.awt.Color;
 
 public class Orders extends JFrame {
 
@@ -56,6 +59,7 @@ public class Orders extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btnNewButton = new JButton("Show Orders");
+		btnNewButton.setBackground(new Color(128, 255, 0));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -79,6 +83,7 @@ public class Orders extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("DELETE ORDER");
+		btnNewButton_1.setBackground(new Color(255, 0, 0));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -118,6 +123,35 @@ public class Orders extends JFrame {
 				"Order_id", "Name", "Address", "Phone", "Land Mark", "Username", "Foodname", "Price", "Quantity", "Total Price", "Date_Time"
 			}
 		));
+		
+		JButton btnNewButton_2 = new JButton("logout");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Login l=new Login();
+				l.setVisible(true);
+				dispose();
+			}
+		});
+		btnNewButton_2.setBackground(new Color(255, 255, 0));
+		btnNewButton_2.setBounds(385, 11, 89, 23);
+		contentPane.add(btnNewButton_2);
+		
+		JButton btnNewButton_3 = new JButton("home");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AdminPanel a=new AdminPanel();
+				a.setVisible(true);
+				dispose();
+			}
+		});
+		btnNewButton_3.setBackground(new Color(255, 255, 0));
+		btnNewButton_3.setBounds(10, 11, 89, 23);
+		contentPane.add(btnNewButton_3);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\HP\\Downloads\\admin.png"));
+		lblNewLabel.setBounds(0, 0, 484, 461);
+		contentPane.add(lblNewLabel);
 	}
 
 }
