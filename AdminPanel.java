@@ -70,7 +70,7 @@ public class AdminPanel extends JFrame {
 		order.setBounds(174, 300, 141, 70);
 		contentPane.add(order);
 		
-		JLabel lblNewLabel = new JLabel("Admin Panel");
+		JLabel lblNewLabel = new JLabel("                                     Admin Panel");
 		lblNewLabel.setBounds(105, 22, 282, 52);
 		contentPane.add(lblNewLabel);
 		

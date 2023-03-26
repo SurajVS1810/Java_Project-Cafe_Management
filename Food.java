@@ -74,12 +74,12 @@ public class Food extends JFrame {
 				
 				DefaultTableModel dtm= (DefaultTableModel) table.getModel();
 				String strfn=(String) dtm.getValueAt(table.getSelectedRow(), 0);
-			//  int i=(int) dtm.getValueAt(table.getSelectedRow(), 1);
-			//	String strprice = new Integer(i).toString();
+				String strprice=(String) dtm.getValueAt(table.getSelectedRow(), 1);
+		
 				String strdesc=(String) dtm.getValueAt(table.getSelectedRow(), 2);
 				
 				foodname.setText(strfn);
-			//	price.setText(strprice);
+				price.setText(strprice);
 				desc.setText(strdesc);
 				
 			}
@@ -158,9 +158,9 @@ public class Food extends JFrame {
 					{
 					String s1=foodname.getText();
 					String s2=price.getText();
-					int i=Integer.parseInt(s2);
+					
 					String s3=desc.getText();
-					stmt.executeUpdate("insert into food values('"+s1+"',"+i+",'"+s3+"')");
+					stmt.executeUpdate("insert into food values('"+s1+"','"+s2+"','"+s3+"')");
 					JOptionPane.showMessageDialog(null, "Successfully inserted");
 					}
 					} catch (Exception e1) {
@@ -185,14 +185,13 @@ public class Food extends JFrame {
 				String strfn=(String) dtm.getValueAt(table.getSelectedRow(), 0);
 				String s1=foodname.getText();
 				String s2=price.getText();
-				int i=Integer.parseInt(s2);
 				String s3=desc.getText();
 				
 				try {
 					Class.forName("oracle.jdbc.driver.OracleDriver");
 					Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl","mca2253","mca2253");
 					Statement stmt=con.createStatement();
-					String sql="update food set food_name='"+s1+"', price="+i+", description='"+s3+"' where food_name='"+strfn+"'";
+					String sql="update food set foodname='"+s1+"', price='"+s2+"', description='"+s3+"' where foodname='"+strfn+"'";
 					stmt.executeUpdate(sql);
 					JOptionPane.showMessageDialog(null, "Successfully updated");
 					
@@ -204,7 +203,7 @@ public class Food extends JFrame {
 			//	DefaultTableModel dtm= (DefaultTableModel) table.getModel();
 				
 				dtm.setValueAt(s1,table.getSelectedRow(), 0);
-				dtm.setValueAt(i,table.getSelectedRow(), 1);
+				dtm.setValueAt(s2,table.getSelectedRow(), 1);
 				dtm.setValueAt(s3,table.getSelectedRow(), 2);
 				
 				}
@@ -223,7 +222,7 @@ public class Food extends JFrame {
 					Statement stmt=con.createStatement();
 					String s1=foodname.getText(); 
 				
-					String sql="delete from food where food_name='"+s1+"'";
+					String sql="delete from food where foodname='"+s1+"'";
 					stmt.executeUpdate(sql);
 						if(foodname.getText().equals(""))
 							JOptionPane.showMessageDialog(null, "Please enter the values");

@@ -20,11 +20,12 @@ import java.awt.event.ActionEvent;
 import java.sql.*;
 import javax.swing.ImageIcon;
 import java.awt.Color;
+import javax.swing.JPasswordField;
 public class Login extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField username;
-	private JTextField password;
+	private JPasswordField password;
 
 	/**
 	 * Launch the application.
@@ -59,11 +60,6 @@ public class Login extends JFrame {
 		username.setBounds(251, 127, 86, 20);
 		contentPane.add(username);
 		username.setColumns(10);
-		
-		password = new JTextField();
-		password.setBounds(251, 167, 86, 20);
-		contentPane.add(password);
-		password.setColumns(10);
 		
 		JLabel testuser = new JLabel("Username :");
 		testuser.setBounds(142, 130, 74, 14);
@@ -108,7 +104,9 @@ public class Login extends JFrame {
 							else
 							{
 								JOptionPane.showMessageDialog(null, "User successfully login");
+								
 								UserPanel u=new UserPanel();
+								u.lblUser.setText(s1);
 								u.setVisible(true);
 								dispose();
 							}	
@@ -175,5 +173,9 @@ public class Login extends JFrame {
 		JLabel label = new JLabel("New label");
 		label.setBounds(251, 23, -14, -5);
 		contentPane.add(label);
+		
+		password = new JPasswordField();
+		password.setBounds(251, 167, 86, 20);
+		contentPane.add(password);
 	}
 }
