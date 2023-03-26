@@ -9,6 +9,8 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 public class AdminPanel extends JFrame {
 
@@ -43,6 +45,13 @@ public class AdminPanel extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton users = new JButton("Users");
+		users.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				users u=new users();
+				u.setVisible(true);
+				dispose();
+			}
+		});
 		users.setBounds(174, 85, 141, 70);
 		contentPane.add(users);
 		
@@ -60,5 +69,21 @@ public class AdminPanel extends JFrame {
 		JButton order = new JButton("Orders");
 		order.setBounds(174, 300, 141, 70);
 		contentPane.add(order);
+		
+		JLabel lblNewLabel = new JLabel("Admin Panel");
+		lblNewLabel.setBounds(105, 22, 282, 52);
+		contentPane.add(lblNewLabel);
+		
+		JButton logout = new JButton("logout");
+		logout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Login l=new Login();
+				l.setVisible(true);
+				dispose();
+	
+			}
+		});
+		logout.setBounds(372, 22, 89, 23);
+		contentPane.add(logout);
 	}
 }

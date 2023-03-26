@@ -1,6 +1,7 @@
 package Cafe;
 
 import java.awt.EventQueue;
+import java.awt.Image;
 import java.awt.Window;
 
 import javax.swing.JFrame;
@@ -17,6 +18,8 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.sql.*;
+import javax.swing.ImageIcon;
+import java.awt.Color;
 public class Login extends JFrame {
 
 	private JPanel contentPane;
@@ -67,6 +70,7 @@ public class Login extends JFrame {
 		contentPane.add(testuser);
 		
 		JLabel textpassword = new JLabel("Password :");
+		textpassword.setBackground(new Color(255, 255, 255));
 		textpassword.setBounds(142, 170, 74, 14);
 		contentPane.add(textpassword);
 		
@@ -89,12 +93,25 @@ public class Login extends JFrame {
 					pst.setString(2, s2);
 					
 					ResultSet rs= pst.executeQuery();
+					
 					if(rs.next())
 					{
-						JOptionPane.showMessageDialog(null, "User successfully login");
-						AdminPanel ap=new AdminPanel();
-						ap.setVisible(true);
-						dispose();
+						
+							if(s1.equals("admin"))
+							{
+								JOptionPane.showMessageDialog(null, "Admin successfully login");
+								AdminPanel ap=new AdminPanel();
+								ap.setVisible(true);
+								dispose();
+								
+							}	
+							else
+							{
+								JOptionPane.showMessageDialog(null, "User successfully login");
+								UserPanel u=new UserPanel();
+								u.setVisible(true);
+								dispose();
+							}	
 					}
 					else
 					{
@@ -150,5 +167,13 @@ public class Login extends JFrame {
 		});
 		exit.setBounds(196, 261, 89, 23);
 		contentPane.add(exit);
+		
+		
+		ImageIcon ic=new ImageIcon(getClass().getResource("ChickenBiryani (1).jpg"));
+		
+		
+		JLabel label = new JLabel("New label");
+		label.setBounds(251, 23, -14, -5);
+		contentPane.add(label);
 	}
 }

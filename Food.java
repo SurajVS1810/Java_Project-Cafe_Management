@@ -117,30 +117,30 @@ public class Food extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		foodname = new JTextField();
-		foodname.setBounds(110, 43, 86, 20);
+		foodname.setBounds(110, 85, 86, 20);
 		contentPane.add(foodname);
 		foodname.setColumns(10);
 		
 		price = new JTextField();
-		price.setBounds(110, 92, 86, 20);
+		price.setBounds(110, 130, 86, 20);
 		contentPane.add(price);
 		price.setColumns(10);
 		
 		desc = new JTextField();
-		desc.setBounds(110, 143, 86, 20);
+		desc.setBounds(110, 172, 86, 20);
 		contentPane.add(desc);
 		desc.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("Food Name :");
-		lblNewLabel.setBounds(31, 46, 69, 14);
+		lblNewLabel.setBounds(31, 88, 69, 14);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Price :");
-		lblNewLabel_1.setBounds(31, 95, 46, 14);
+		lblNewLabel_1.setBounds(45, 133, 46, 14);
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Description :");
-		lblNewLabel_2.setBounds(31, 146, 76, 14);
+		lblNewLabel_2.setBounds(31, 175, 76, 14);
 		contentPane.add(lblNewLabel_2);
 		
 		JButton add = new JButton("Add Item");
@@ -169,7 +169,7 @@ public class Food extends JFrame {
 				}
 			}
 		});
-		add.setBounds(59, 200, 89, 35);
+		add.setBounds(59, 239, 105, 35);
 		contentPane.add(add);
 		
 		JButton edit = new JButton("Edit Item");
@@ -211,7 +211,7 @@ public class Food extends JFrame {
 				
 			}
 		});
-		edit.setBounds(59, 262, 89, 35);
+		edit.setBounds(59, 299, 105, 35);
 		contentPane.add(edit);
 		
 		JButton delete = new JButton("Delete Item");
@@ -236,7 +236,29 @@ public class Food extends JFrame {
 				}
 			}
 		});
-		delete.setBounds(59, 328, 105, 35);
+		delete.setBounds(59, 359, 105, 35);
 		contentPane.add(delete);
+		
+		JButton logout = new JButton("logout");
+		logout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Login l=new Login();
+				l.setVisible(true);
+				dispose();
+			}
+		});
+		logout.setBounds(372, 11, 89, 23);
+		contentPane.add(logout);
+		
+		JButton btnNewButton_1 = new JButton("home");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AdminPanel ap=new AdminPanel();
+				ap.setVisible(true);
+				dispose();
+			}
+		});
+		btnNewButton_1.setBounds(11, 11, 89, 23);
+		contentPane.add(btnNewButton_1);
 	}
 }
