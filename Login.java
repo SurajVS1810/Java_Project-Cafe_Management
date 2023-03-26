@@ -57,20 +57,22 @@ public class Login extends JFrame {
 		contentPane.setLayout(null);
 		
 		username = new JTextField();
-		username.setBounds(251, 127, 86, 20);
+		username.setBounds(255, 253, 121, 33);
 		contentPane.add(username);
 		username.setColumns(10);
 		
 		JLabel testuser = new JLabel("Username :");
-		testuser.setBounds(142, 130, 74, 14);
+		testuser.setBounds(135, 253, 81, 33);
 		contentPane.add(testuser);
 		
 		JLabel textpassword = new JLabel("Password :");
 		textpassword.setBackground(new Color(255, 255, 255));
-		textpassword.setBounds(142, 170, 74, 14);
+		textpassword.setBounds(135, 310, 74, 17);
 		contentPane.add(textpassword);
 		
 		JButton login = new JButton("LOGIN");
+		login.setBackground(new Color(0, 255, 255));
+		login.setForeground(new Color(0, 0, 0));
 		login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -129,10 +131,12 @@ public class Login extends JFrame {
 				
 			}
 		});
-		login.setBounds(130, 227, 105, 23);
+		login.setBounds(111, 359, 105, 23);
 		contentPane.add(login);
 		
 		JButton register = new JButton("REGISTER");
+		register.setBackground(new Color(0, 255, 255));
+		register.setForeground(new Color(0, 0, 0));
 		register.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -156,28 +160,37 @@ public class Login extends JFrame {
 				}
 			}
 		});
-		register.setBounds(248, 227, 115, 23);
+		register.setBounds(251, 359, 115, 23);
 		contentPane.add(register);
 		
 		JButton exit = new JButton("EXIT");
+		exit.setBackground(new Color(255, 0, 0));
 		exit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			  dispose();
 			}
 		});
-		exit.setBounds(196, 261, 89, 23);
+		exit.setBounds(196, 393, 89, 23);
 		contentPane.add(exit);
 		
 		
-		ImageIcon ic=new ImageIcon(getClass().getResource("ChickenBiryani (1).jpg"));
-		
+		ImageIcon ic=new ImageIcon(getClass().getResource("Loginback (2).jpeg"));
+		ImageIcon bc=new ImageIcon(getClass().getResource("back (3).jpg"));
 		
 		JLabel label = new JLabel("New label");
 		label.setBounds(251, 23, -14, -5);
 		contentPane.add(label);
 		
 		password = new JPasswordField();
-		password.setBounds(251, 167, 86, 20);
+		password.setBounds(255, 302, 121, 33);
 		contentPane.add(password);
+		
+		JLabel online = new JLabel(ic);
+		online.setBounds(0, 0, 484, 221);
+		contentPane.add(online);
+		
+		JLabel lblNewLabel = new JLabel(bc);
+		lblNewLabel.setBounds(0, 220, 484, 241);
+		contentPane.add(lblNewLabel);
 	}
 }
