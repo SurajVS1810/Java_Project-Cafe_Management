@@ -159,7 +159,14 @@ public class Cart extends JFrame {
 					
 					String s3=no.getText();
 					String s4=land.getText();
-					stmt.executeUpdate("insert into food values('"+s1+"','"+s2+"','"+s3+"')");
+					String s5=cartlabel.getText();
+					
+					DefaultTableModel dtm= (DefaultTableModel) table.getModel();
+					String s6=(String) dtm.getValueAt(table.getSelectedRow(), 0);
+					String s7=(String) dtm.getValueAt(table.getSelectedRow(), 1);
+			
+					
+					stmt.executeUpdate("insert into orders values('"+s1+"','"+s2+"','"+s3+"','"+s4+"','"+s5+"','"+s6+"','"+s7+"',CURRENT_TIMESTAMP)");
 					JOptionPane.showMessageDialog(null, "Successfully inserted");
 					}
 					} catch (Exception e1) {
@@ -185,6 +192,17 @@ public class Cart extends JFrame {
 				"Food Name", "Price"
 			}
 		));
+		
+		JButton btnNewButton_3 = new JButton("Home");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				UserPanel u=new UserPanel();
+				u.setVisible(true);
+				dispose();
+			}
+		});
+		btnNewButton_3.setBounds(10, 27, 89, 23);
+		contentPane.add(btnNewButton_3);
 	}
 
 }
