@@ -26,6 +26,8 @@ import java.sql.Statement;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.ImageIcon;
+import java.awt.Color;
 
 public class Food extends JFrame {
 
@@ -94,6 +96,7 @@ public class Food extends JFrame {
 		));
 		
 		JButton btnNewButton = new JButton("Food Details");
+		btnNewButton.setBackground(new Color(255, 128, 255));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -144,6 +147,7 @@ public class Food extends JFrame {
 		contentPane.add(lblNewLabel_2);
 		
 		JButton add = new JButton("Add Item");
+		add.setBackground(new Color(128, 255, 0));
 		add.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -173,6 +177,7 @@ public class Food extends JFrame {
 		contentPane.add(add);
 		
 		JButton edit = new JButton("Edit Item");
+		edit.setBackground(new Color(128, 255, 0));
 		edit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(foodname.getText().equals("")||price.getText().equals("")||desc.getText().equals(""))
@@ -214,6 +219,7 @@ public class Food extends JFrame {
 		contentPane.add(edit);
 		
 		JButton delete = new JButton("Delete Item");
+		delete.setBackground(new Color(128, 255, 0));
 		delete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -239,6 +245,7 @@ public class Food extends JFrame {
 		contentPane.add(delete);
 		
 		JButton logout = new JButton("logout");
+		logout.setBackground(new Color(255, 255, 0));
 		logout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Login l=new Login();
@@ -250,6 +257,7 @@ public class Food extends JFrame {
 		contentPane.add(logout);
 		
 		JButton btnNewButton_1 = new JButton("home");
+		btnNewButton_1.setBackground(new Color(255, 255, 0));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				AdminPanel ap=new AdminPanel();
@@ -259,5 +267,10 @@ public class Food extends JFrame {
 		});
 		btnNewButton_1.setBounds(11, 11, 89, 23);
 		contentPane.add(btnNewButton_1);
+		
+		JLabel lblNewLabel_3 = new JLabel("");
+		lblNewLabel_3.setIcon(new ImageIcon("C:\\Users\\HP\\Downloads\\admin.png"));
+		lblNewLabel_3.setBounds(0, 0, 484, 461);
+		contentPane.add(lblNewLabel_3);
 	}
 }

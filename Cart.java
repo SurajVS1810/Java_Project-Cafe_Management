@@ -26,6 +26,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.Color;
+import javax.swing.ImageIcon;
 
 public class Cart extends JFrame {
 
@@ -66,6 +67,7 @@ public class Cart extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btnNewButton = new JButton("Show Cart");
+		btnNewButton.setBackground(new Color(128, 255, 255));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -91,6 +93,7 @@ public class Cart extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("logout");
+		btnNewButton_1.setBackground(new Color(255, 255, 0));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Login l=new Login();
@@ -106,39 +109,39 @@ public class Cart extends JFrame {
 		contentPane.add(cartlabel);
 		
 		name = new JTextField();
-		name.setBounds(88, 77, 86, 20);
+		name.setBounds(88, 122, 86, 20);
 		contentPane.add(name);
 		name.setColumns(10);
 		
 		address = new JTextField();
-		address.setBounds(88, 120, 86, 20);
+		address.setBounds(88, 161, 86, 20);
 		contentPane.add(address);
 		address.setColumns(10);
 		
 		no = new JTextField();
-		no.setBounds(88, 162, 86, 20);
+		no.setBounds(88, 205, 86, 20);
 		contentPane.add(no);
 		no.setColumns(10);
 		
 		land = new JTextField();
-		land.setBounds(88, 207, 86, 20);
+		land.setBounds(88, 247, 86, 20);
 		contentPane.add(land);
 		land.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("Name :");
-		lblNewLabel.setBounds(10, 80, 46, 14);
+		lblNewLabel.setBounds(10, 125, 46, 14);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("Adress :");
-		lblNewLabel_1.setBounds(10, 123, 68, 14);
+		JLabel lblNewLabel_1 = new JLabel("Address :");
+		lblNewLabel_1.setBounds(10, 164, 68, 14);
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Phone No :");
-		lblNewLabel_2.setBounds(10, 165, 68, 14);
+		lblNewLabel_2.setBounds(10, 205, 68, 14);
 		contentPane.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("Land Mark :");
-		lblNewLabel_3.setBounds(10, 210, 68, 14);
+		lblNewLabel_3.setBounds(10, 250, 68, 14);
 		contentPane.add(lblNewLabel_3);
 		
 		JButton btnNewButton_2 = new JButton("Order now");
@@ -189,6 +192,7 @@ public class Cart extends JFrame {
 		contentPane.add(btnNewButton_2);
 		
 		JButton btnNewButton_3 = new JButton("Home");
+		btnNewButton_3.setBackground(new Color(255, 255, 0));
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				UserPanel u=new UserPanel();
@@ -201,6 +205,7 @@ public class Cart extends JFrame {
 		contentPane.add(btnNewButton_3);
 		
 		JButton btnNewButton_4 = new JButton("DELETE");
+		btnNewButton_4.setBackground(new Color(255, 0, 0));
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -227,11 +232,11 @@ public class Cart extends JFrame {
 				}
 			}
 		});
-		btnNewButton_4.setBounds(313, 337, 89, 23);
+		btnNewButton_4.setBounds(289, 384, 89, 23);
 		contentPane.add(btnNewButton_4);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(240, 125, 217, 187);
+		scrollPane.setBounds(203, 125, 271, 239);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
@@ -249,6 +254,11 @@ public class Cart extends JFrame {
 				"Food Name", "Price", "Quantity", "Total Price"
 			}
 		));
+		
+		JLabel lblNewLabel_4 = new JLabel("");
+		lblNewLabel_4.setIcon(new ImageIcon("C:\\Users\\HP\\Downloads\\admin.png"));
+		lblNewLabel_4.setBounds(0, 0, 484, 461);
+		contentPane.add(lblNewLabel_4);
 	}
 
 }

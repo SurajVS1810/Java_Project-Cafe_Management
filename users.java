@@ -23,6 +23,9 @@ import net.proteanit.sql.DbUtils;
 import javax.swing.JScrollPane;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
+import java.awt.Color;
 
 public class users extends JFrame {
 
@@ -58,6 +61,7 @@ public class users extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton userbutton = new JButton("Show Users");
+		userbutton.setBackground(new Color(128, 255, 0));
 		userbutton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -102,6 +106,7 @@ public class users extends JFrame {
 		));
 		
 		JButton deleteuser = new JButton("DELETE USER");
+		deleteuser.setBackground(new Color(255, 0, 0));
 		deleteuser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -128,6 +133,7 @@ public class users extends JFrame {
 		contentPane.add(deleteuser);
 		
 		JButton btnNewButton = new JButton("logout");
+		btnNewButton.setBackground(new Color(255, 255, 0));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Login l=new Login();
@@ -139,6 +145,7 @@ public class users extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("home");
+		btnNewButton_1.setBackground(new Color(255, 255, 0));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				AdminPanel ap=new AdminPanel();
@@ -148,5 +155,10 @@ public class users extends JFrame {
 		});
 		btnNewButton_1.setBounds(10, 11, 89, 23);
 		contentPane.add(btnNewButton_1);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\HP\\Downloads\\admin.png"));
+		lblNewLabel.setBounds(0, 0, 484, 461);
+		contentPane.add(lblNewLabel);
 	}
 }

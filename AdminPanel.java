@@ -11,6 +11,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+import java.awt.Color;
+import javax.swing.ImageIcon;
 
 public class AdminPanel extends JFrame {
 
@@ -45,6 +47,8 @@ public class AdminPanel extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton users = new JButton("Users");
+		users.setForeground(new Color(0, 255, 0));
+		users.setBackground(new Color(0, 0, 255));
 		users.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				users u=new users();
@@ -56,6 +60,8 @@ public class AdminPanel extends JFrame {
 		contentPane.add(users);
 		
 		JButton item = new JButton("Items");
+		item.setForeground(new Color(0, 255, 0));
+		item.setBackground(new Color(0, 0, 255));
 		item.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Food f=new Food();
@@ -67,6 +73,8 @@ public class AdminPanel extends JFrame {
 		contentPane.add(item);
 		
 		JButton order = new JButton("Orders");
+		order.setForeground(new Color(0, 255, 0));
+		order.setBackground(new Color(0, 0, 255));
 		order.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Orders o=new Orders();
@@ -78,10 +86,13 @@ public class AdminPanel extends JFrame {
 		contentPane.add(order);
 		
 		JLabel lblNewLabel = new JLabel("Admin Panel");
-		lblNewLabel.setBounds(105, 22, 282, 52);
+		lblNewLabel.setBackground(new Color(0, 0, 255));
+		lblNewLabel.setForeground(new Color(64, 0, 64));
+		lblNewLabel.setBounds(205, 22, 89, 52);
 		contentPane.add(lblNewLabel);
 		
 		JButton logout = new JButton("logout");
+		logout.setBackground(new Color(255, 255, 0));
 		logout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Login l=new Login();
@@ -92,5 +103,10 @@ public class AdminPanel extends JFrame {
 		});
 		logout.setBounds(372, 22, 89, 23);
 		contentPane.add(logout);
+		
+		JLabel lblNewLabel_1 = new JLabel("New label");
+		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\HP\\Downloads\\admin.png"));
+		lblNewLabel_1.setBounds(0, 0, 484, 461);
+		contentPane.add(lblNewLabel_1);
 	}
 }
