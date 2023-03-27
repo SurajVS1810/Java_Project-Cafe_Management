@@ -37,7 +37,7 @@ public class Cart extends JFrame {
 	private JTextField no;
 	private JTextField land;
 	private JTable table;
-
+	String s;
 	/**
 	 * Launch the application.
 	 */
@@ -157,13 +157,15 @@ public class Cart extends JFrame {
 					}
 					else
 					{
-					ResultSet rs=stmt.executeQuery("select count(*) from orders");
-					if(rs.next())
+					ResultSet rs=stmt.executeQuery("select order_id from orders");
+					while(rs.next())
 					{
 						String k=rs.getString(1);
 						int i=Integer.parseInt(k);
-						int j=i*3;
-						String s=Integer.toString(j);
+						i++;
+						s=Integer.toString(i);
+					}
+						
 					String s1=name.getText();
 					String s2=address.getText();
 					
@@ -180,7 +182,7 @@ public class Cart extends JFrame {
 					stmt.executeUpdate("insert into orders values('"+s+"','"+s1+"','"+s2+"','"+s3+"','"+s4+"','"+s5+"','"+s6+"','"+s7+"','"+s8+"','"+s9+"',CURRENT_TIMESTAMP)");
 					JOptionPane.showMessageDialog(null, "Your Order is Placed, Food will be arrived in 30 minutes,Thanku...");
 					}
-					}
+					
 					} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

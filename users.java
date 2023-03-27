@@ -85,8 +85,19 @@ public class users extends JFrame {
 		contentPane.add(userbutton);
 		
 		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				DefaultTableModel dtm= (DefaultTableModel) table.getModel();
+				String struname=(String) dtm.getValueAt(table.getSelectedRow(), 0);
+			}
+		});
 		scrollPane.setBounds(130, 102, 215, 220);
 		contentPane.add(scrollPane);
+		
+		JLabel deletelabel = new JLabel();
+		deletelabel.setBounds(113, 346, 46, 17);
+		contentPane.add(deletelabel);
 		
 		table = new JTable();
 		table.addMouseListener(new MouseAdapter() {
@@ -94,6 +105,7 @@ public class users extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				DefaultTableModel dtm= (DefaultTableModel) table.getModel();
 				String struname=(String) dtm.getValueAt(table.getSelectedRow(), 0);
+				deletelabel.setText(struname);
 			}
 		});
 		scrollPane.setViewportView(table);
@@ -115,7 +127,8 @@ public class users extends JFrame {
 					Statement stmt=con.createStatement();
 					DefaultTableModel dtm= (DefaultTableModel) table.getModel();
 					String struname=(String) dtm.getValueAt(table.getSelectedRow(), 0);
-						if(struname.equals(""))
+					
+						if(deletelabel.getText().equals(""))
 						{
 							JOptionPane.showMessageDialog(null, "Please enter the values");
 						}
@@ -158,9 +171,11 @@ public class users extends JFrame {
 		btnNewButton_1.setBounds(10, 11, 89, 23);
 		contentPane.add(btnNewButton_1);
 		
-		JLabel lblNewLabel = new JLabel("New label");
+		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\HP\\Downloads\\admin.png"));
 		lblNewLabel.setBounds(0, 0, 484, 461);
 		contentPane.add(lblNewLabel);
+		
+		
 	}
 }
