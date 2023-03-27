@@ -111,7 +111,7 @@ public class UserPanel extends JFrame {
 					}
 					else
 					{
-
+						
 					String s1=lblUser.getText();
 					String s2=foodlabel.getText();
 					String s3=pricelabel.getText();
