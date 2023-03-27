@@ -143,16 +143,34 @@ public class Login extends JFrame {
 					Class.forName("oracle.jdbc.driver.OracleDriver");
 					Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl","mca2253","mca2253");
 					Statement stmt=con.createStatement();
+					ResultSet rs=stmt.executeQuery("select * from login");
+					String s1=username.getText();
+					String s2=password.getText();
 					if(username.getText().equals("")||password.getText().equals(""))
 					{
 						JOptionPane.showMessageDialog(null, "Please enter the values");
 					}
 					else
 					{
-					String s1=username.getText();
-					String s2=password.getText();
-					stmt.executeUpdate("insert into login values('"+s1+"','"+s2+"')");
-					JOptionPane.showMessageDialog(null, "User successfully registered");
+					
+						
+						while(rs.next())
+						{
+							
+							if(rs.getString(1).equals(s1))
+							{
+								
+								JOptionPane.showMessageDialog(null, "Please enter the another username");
+							}
+							
+								
+						}
+						
+						stmt.executeUpdate("insert into login values('"+s1+"','"+s2+"')");
+						JOptionPane.showMessageDialog(null, "User successfully registered");
+						
+					
+					
 					}
 					} catch (Exception e1) {
 					// TODO Auto-generated catch block

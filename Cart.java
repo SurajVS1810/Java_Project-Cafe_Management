@@ -162,7 +162,7 @@ public class Cart extends JFrame {
 					{
 						String k=rs.getString(1);
 						int i=Integer.parseInt(k);
-						int j=i+7;
+						int j=i*3;
 						String s=Integer.toString(j);
 					String s1=name.getText();
 					String s2=address.getText();

@@ -116,7 +116,9 @@ public class users extends JFrame {
 					DefaultTableModel dtm= (DefaultTableModel) table.getModel();
 					String struname=(String) dtm.getValueAt(table.getSelectedRow(), 0);
 						if(struname.equals(""))
+						{
 							JOptionPane.showMessageDialog(null, "Please enter the values");
+						}
 						else
 						{
 							String sql="delete from login where uname='"+struname+"'";
